@@ -22,6 +22,12 @@ namespace Marketplace.SaaS.Accelerator.Services.Services;
 /// <seealso cref="Microsoft.Marketplace.SaaS.SDK.Services.Contracts.IFulfilmentApiClient" />
 public class FulfillmentApiService : BaseApiService, IFulfillmentApiService
 {
+
+    /// <summary>
+    /// The offer that we handle.
+    /// </summary>
+    private const string TARGET_OFFER_ID = "543de93f-49b0-4499-a58b-d1433a0aa3d1";
+
     /// <summary>
     /// Gets or sets the SDK settings.
     /// </summary>
@@ -61,7 +67,11 @@ public class FulfillmentApiService : BaseApiService, IFulfillmentApiService
         try
         {
             var subscriptions = await this.marketplaceClient.Fulfillment.ListSubscriptionsAsync().ToListAsync();
-            return subscriptions.subscriptionResultList();
+            // Filter subscriptions to only include our target offer ID
+            return subscriptions
+                .Where(s => s.OfferId == TARGET_OFFER_ID)
+                .ToList()
+                .subscriptionResultList();
         }
         catch (RequestFailedException ex)
         {
