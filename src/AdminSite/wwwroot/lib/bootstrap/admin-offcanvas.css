@@ -41,9 +41,8 @@ body {
 
 
 .mycontainer {
-    margin-top: -8px;
     display: flex;
-    
+    /* justify-content: space-between; */
     height: 100vh;
 }
 
@@ -56,11 +55,19 @@ body {
 .class1 {
     flex: 0 0 50px;
     background-color: #000D25;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.cm-logo {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .nav-scroller {
@@ -353,4 +360,13 @@ button.navbar-toggler.nav-item.nav-link {
 
 .lh-150 {
     line-height: 1.5;
+}
+
+.cm-top-nav-bar {
+    background-color: #333 !important;
+    margin-bottom: 0;
+    border-radius: 0;
+    height: 48px;
+    position: relative;
+    z-index: 1;
 }
