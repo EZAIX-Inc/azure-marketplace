@@ -55,8 +55,7 @@ body {
 
 .class1 {
     flex: 0 0 50px;
-    
-    background-color: #333;
+    background-color: #000D25;
 }
 
 
@@ -120,31 +119,27 @@ button.navbar-toggler.nav-item.nav-link {
     font-size: 14px;
     line-height: 20px;
     font-family: Segoe UI Web,Segoe UI Symbol,Helvetica Neue,BBAlpha Sans,S60 Sans,Arial,sans-serif;
-    color: #c2c2c2;
-    /*background-color: #666666;*/
+    color: #ffffff;
 }
 
     .nav-underline .nav-link:hover {
-        background-color: #666666;
+        background-color: #002d4d;
         font-weight:600;
         text-decoration:none;
-
-        /*font-size: 1rem;*/
-        color: #fff;
+        color: #ffffff;
     }
 
     .nav-underline .nav-link:active {
-        color: #fff;
+        color: #ffffff;
         font-size: .875rem;
         text-decoration:none;
         
     }
 
 .nav-underline .active {
-    color: #fff;
+    color: #ffffff;
     font-size: .875rem;
-    
-    /*background-color: #666666;*/
+    background-color: #002d4d;
 }
 
 
