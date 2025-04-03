@@ -79,34 +79,34 @@ dotnet-ef migrations script `
 Write-host "## Generated migration script"	
 
 Write-host "## !!!Attempting to upgrade database to migration compatibility.!!!"	
-$compatibilityScript = "
-IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL 
--- No __EFMigrations table means Database has not been upgraded to support EF Migrations
-BEGIN
-    CREATE TABLE [__EFMigrationsHistory] (
-        [MigrationId] nvarchar(150) NOT NULL,
-        [ProductVersion] nvarchar(32) NOT NULL,
-        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
-    );
+# $compatibilityScript = "
+# IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL 
+# -- No __EFMigrations table means Database has not been upgraded to support EF Migrations
+# BEGIN
+#     CREATE TABLE [__EFMigrationsHistory] (
+#         [MigrationId] nvarchar(150) NOT NULL,
+#         [ProductVersion] nvarchar(32) NOT NULL,
+#         CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+#     );
 
-    IF (SELECT TOP 1 VersionNumber FROM DatabaseVersionHistory ORDER BY CreateBy DESC) = '2.10'
-	    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion]) 
-	        VALUES (N'20221118045814_Baseline_v2', N'6.0.1');
+#     IF (SELECT TOP 1 VersionNumber FROM DatabaseVersionHistory ORDER BY CreateBy DESC) = '2.10'
+# 	    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion]) 
+# 	        VALUES (N'20221118045814_Baseline_v2', N'6.0.1');
 
-    IF (SELECT TOP 1 VersionNumber FROM DatabaseVersionHistory ORDER BY CreateBy DESC) = '5.00'
-	    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])  
-	        VALUES (N'20221118045814_Baseline_v2', N'6.0.1'), (N'20221118203340_Baseline_v5', N'6.0.1');
+#     IF (SELECT TOP 1 VersionNumber FROM DatabaseVersionHistory ORDER BY CreateBy DESC) = '5.00'
+# 	    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])  
+# 	        VALUES (N'20221118045814_Baseline_v2', N'6.0.1'), (N'20221118203340_Baseline_v5', N'6.0.1');
 
-    IF (SELECT TOP 1 VersionNumber FROM DatabaseVersionHistory ORDER BY CreateBy DESC) = '6.10'
-	    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])  
-	        VALUES (N'20221118045814_Baseline_v2', N'6.0.1'), (N'20221118203340_Baseline_v5', N'6.0.1'), (N'20221118211554_Baseline_v6', N'6.0.1');
-END;
-GO"
+#     IF (SELECT TOP 1 VersionNumber FROM DatabaseVersionHistory ORDER BY CreateBy DESC) = '6.10'
+# 	    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])  
+# 	        VALUES (N'20221118045814_Baseline_v2', N'6.0.1'), (N'20221118203340_Baseline_v5', N'6.0.1'), (N'20221118211554_Baseline_v6', N'6.0.1');
+# END;
+# GO"
 
-Invoke-Sqlcmd -query $compatibilityScript -ServerInstance $Server -database $Database -Username $User -Password $Pass
-Write-host "## Ran compatibility script against database"
-Invoke-Sqlcmd -inputFile script.sql -ServerInstance $Server -database $Database -Username $User -Password $Pass
-Write-host "## Ran migration against database"	
+# Invoke-Sqlcmd -query $compatibilityScript -ServerInstance $Server -database $Database -Username $User -Password $Pass
+# Write-host "## Ran compatibility script against database"
+# Invoke-Sqlcmd -inputFile script.sql -ServerInstance $Server -database $Database -Username $User -Password $Pass
+# Write-host "## Ran migration against database"	
 
 Remove-Item -Path ../src/AdminSite/appsettings.Development.json
 Remove-Item -Path script.sql
