@@ -58,6 +58,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    /* width: 150px; */
 }
 
 
@@ -102,7 +103,11 @@ button.navbar-toggler.nav-item.nav-link {
 
 .nav-item .nav-link {
     margin-block: -12px;
-    padding-left: 10px;
+    /* padding-left: 10px; */
+}
+
+.nav {
+    padding-right: 0px;
 }
 
 
@@ -369,4 +374,51 @@ button.navbar-toggler.nav-item.nav-link {
     height: 48px;
     position: relative;
     z-index: 1;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #004578;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-right: 15px;
+    margin-left: 15px;
+    min-width: 25px;
+}
+
+.avatar-button{
+    max-width: 150px;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 4px;
+}
+
+.user-session {
+    margin-bottom: 15px;
+}
+
+.user-session-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.user-session .cm-logout {
+    margin-left: 8px;
+    color: white;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.user-session .cm-logout:hover {
+    opacity: 1;
 }
