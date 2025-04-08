@@ -173,6 +173,15 @@ public class Startup
         });
 
         services.AddScoped<OffersService>();
+
+        // Register HttpClient for Azure Functions
+        services.AddHttpClient<IAzureFunctionService, AzureFunctionService>(client =>
+        {
+            client.Timeout = TimeSpan.FromSeconds(30);
+        });
+
+        // Register Azure Function Service
+        services.AddScoped<IAzureFunctionService, AzureFunctionService>();
     }
 
     /// <summary>
